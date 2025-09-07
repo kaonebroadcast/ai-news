@@ -1,0 +1,29 @@
+/* This file ensures text is readable in both light and dark modes */
+/* It only affects text colors and doesn't modify any other styles */
+
+/* Base text color for all elements */
+* {
+  color: inherit !important;
+}
+
+/* Light theme text color */
+:root {
+  color: #1a1a1a;
+}
+
+/* Dark theme text color */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f0f0f0;
+  }
+}
+
+/* Links */
+a {
+  color: #0066cc !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
