@@ -57,7 +57,7 @@ export default function LoginPage() {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       
       // First, try to log in with email and password
-      const response = await fetch(`${apiUrl}/api/website-users/login`, {
+      const response = await fetch(`${apiUrl}/api/website-login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
