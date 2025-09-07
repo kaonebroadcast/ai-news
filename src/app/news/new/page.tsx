@@ -104,7 +104,7 @@ export default function NewNewsPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-semibold text-center">Create AI News Report</h1>
+      <h1 className="text-2xl sm:text-3xl font-semibold text-center">Pradesh24 AI News Report</h1>
 
       {/* Pre-generate: center form as a card */}
       {showForm && !content && (
