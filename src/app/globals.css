@@ -35,3 +35,13 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Button text color fix */
+button {
+  color: var(--color-foreground);
+}
+
+/* Specific fix for buttons with text-background class */
+.bg-foreground.text-background {
+  color: var(--color-background) !important;
+}
