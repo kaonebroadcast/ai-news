@@ -109,7 +109,15 @@ export default function NewNewsPage() {
 
       {/* Pre-generate: center form as a card */}
       {showForm && !content && (
-        <form onSubmit={handleGenerate} className="mx-auto w-full space-y-5 border rounded-lg p-5 sm:p-6 bg-background">
+        <form 
+          onSubmit={handleGenerate} 
+          className="mx-auto w-full max-w-3xl space-y-5 border border-border/50 bg-background/80 dark:bg-background/90 backdrop-blur-sm rounded-xl p-5 sm:p-6 shadow-sm transition-colors"
+          style={{
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            backgroundColor: 'rgba(var(--background-rgb), 0.8)'
+          }}
+        >
           <div>
             <div className="mb-2 space-y-2">
               <div className="w-full max-w-xs">
@@ -117,7 +125,7 @@ export default function NewNewsPage() {
                 <div className="relative">
                   <select
                     id="format"
-                    className="w-full appearance-none rounded px-3 pr-10 py-2 border bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full appearance-none rounded px-3 pr-10 py-2 border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors"
                     value={format}
                     onChange={(e) => setFormat(e.target.value as NewsFormat)}
                   >
@@ -181,7 +189,7 @@ export default function NewNewsPage() {
             )}
             <label htmlFor="brief" className="block text-sm font-medium">Brief / Context</label>
             <textarea
-              className="w-full border rounded px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-ring min-h-[120px]"
+              className="w-full border border-border rounded px-3 py-2 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors min-h-[120px]"
               id="brief"
               value={brief}
               onChange={(e) => setBrief(e.target.value)}
@@ -192,7 +200,7 @@ export default function NewNewsPage() {
           <div className="flex items-center justify-end gap-3">
             <button
               type="button"
-              className="px-4 py-2 rounded border hover:bg-muted/50"
+              className="px-4 py-2 rounded border border-border hover:bg-muted/50 transition-colors"
               onClick={() => router.push("/news")}
             >
               Cancel
@@ -200,7 +208,7 @@ export default function NewNewsPage() {
             <button
               type="submit"
               disabled={generating}
-              className="px-4 py-2 rounded bg-foreground text-background hover:opacity-90 disabled:opacity-60"
+              className="px-4 py-2 rounded bg-foreground text-background hover:opacity-90 disabled:opacity-60 transition-opacity"
             >
               {generating ? "Generating..." : "Generate Preview"}
             </button>
@@ -212,7 +220,15 @@ export default function NewNewsPage() {
       {content && (
         <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 items-start`}>
           {showForm && (
-            <form onSubmit={handleGenerate} className="space-y-4 lg:col-span-1 border rounded-lg p-4 sm:p-5 bg-background">
+            <form 
+              onSubmit={handleGenerate} 
+              className="space-y-4 lg:col-span-1 border border-border/50 bg-background/80 dark:bg-background/90 backdrop-blur-sm rounded-xl p-4 sm:p-5 shadow-sm transition-colors"
+              style={{
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                backgroundColor: 'rgba(var(--background-rgb), 0.8)'
+              }}
+            >
               <div>
                 <div className="mb-2 space-y-2">
                   <label htmlFor="brief-post" className="block text-sm font-medium">Brief / Context</label>
@@ -221,7 +237,7 @@ export default function NewNewsPage() {
                     <div className="relative">
                       <select
                         id="format-post"
-                        className="w-full appearance-none rounded px-3 pr-10 py-2 border bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="w-full appearance-none rounded px-3 pr-10 py-2 border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors"
                         value={format}
                         onChange={(e) => setFormat(e.target.value as NewsFormat)}
                       >
@@ -284,7 +300,7 @@ export default function NewNewsPage() {
                   </div>
                 )}
                 <textarea
-                  className="w-full border rounded px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-ring min-h-[120px]"
+                  className="w-full border border-border rounded px-3 py-2 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors min-h-[120px]"
                   id="brief-post"
                   value={brief}
                   onChange={(e) => setBrief(e.target.value)}
@@ -302,7 +318,7 @@ export default function NewNewsPage() {
                 <div className="flex-1" />
                 <button
                   type="button"
-                  className="px-4 py-2 rounded border hover:bg-muted/50"
+                  className="px-4 py-2 rounded border border-border hover:bg-muted/50 transition-colors"
                   onClick={() => router.push("/news")}
                 >
                   Cancel
@@ -318,14 +334,14 @@ export default function NewNewsPage() {
           >
             <h2 className="text-lg font-medium">Preview & Edit</h2>
             <textarea
-              className="w-full border rounded px-3 py-2 bg-background font-mono text-sm min-h-[420px] lg:min-h-[520px] focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-full border border-border rounded px-3 py-2 bg-background text-foreground font-mono text-sm min-h-[420px] lg:min-h-[520px] focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
             <div className="space-y-2">
               <label className="block text-sm font-medium">Regenerate Instructions (optional)</label>
               <textarea
-                className="w-full border rounded px-3 py-2 bg-background min-h-[100px] focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full border border-border rounded px-3 py-2 bg-background text-foreground min-h-[100px] focus:outline-none focus:ring-2 focus:ring-ring/50 transition-colors"
                 placeholder="Example: Add official statement, clarify numbers, shorten intro..."
                 value={regenInstructions}
                 onChange={(e) => setRegenInstructions(e.target.value)}
@@ -362,7 +378,7 @@ export default function NewNewsPage() {
                 onClick={handleSave}
                 disabled={true}
                 // disabled={loading || !content.trim()}
-                className="px-4 py-2 rounded bg-foreground text-background hover:opacity-90 disabled:opacity-60"
+                className="px-4 py-2 rounded bg-foreground text-background hover:opacity-90 disabled:opacity-60 transition-opacity"
               >
                 {loading ? "Saving..." : "Save"}
               </button>
