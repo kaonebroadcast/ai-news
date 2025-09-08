@@ -115,7 +115,7 @@ export default function NewNewsPage() {
           style={{
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
-            backgroundColor: 'rgba(var(--background-rgb), 0.8)'
+            backgroundColor: '#fff'
           }}
         >
           <div>
