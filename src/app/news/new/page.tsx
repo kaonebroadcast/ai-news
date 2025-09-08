@@ -105,7 +105,7 @@ export default function NewNewsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-center text-foreground">Pradesh24 AI News Report</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-center">Pradesh24 AI News Report</h1>
 
       {/* Pre-generate: center form as a card */}
       {showForm && !content && (
@@ -113,7 +113,7 @@ export default function NewNewsPage() {
           <div>
             <div className="mb-2 space-y-2">
               <div className="w-full max-w-xs">
-                <label className="block text-sm font-medium text-[#333]" htmlFor="format">Format</label>
+                <label className="block text-sm font-medium" htmlFor="format">Format</label>
                 <div className="relative">
                   <select
                     id="format"
@@ -179,7 +179,7 @@ export default function NewNewsPage() {
                 </div>
               </div>
             )}
-            <label htmlFor="brief" className="block text-sm font-medium text-foreground">Brief / Context</label>
+            <label htmlFor="brief" className="block text-sm font-medium">Brief / Context</label>
             <textarea
               className="w-full border rounded px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-ring min-h-[120px]"
               id="brief"
@@ -244,7 +244,7 @@ export default function NewNewsPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {format !== "AV_GFX" && (
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-foreground">VO Count</label>
+                        <label className="block text-sm font-medium mb-1">VO Count</label>
                         <input
                           type="number"
                           min={1}
@@ -256,7 +256,7 @@ export default function NewNewsPage() {
                       </div>
                     )}
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-foreground">Top Band Count</label>
+                      <label className="block text-sm font-medium mb-1">Top Band Count</label>
                       <input
                         type="number"
                         min={1}
@@ -271,7 +271,7 @@ export default function NewNewsPage() {
                 {format === "BULLETIN_26M" && (
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-foreground">Story Count</label>
+                      <label className="block text-sm font-medium mb-1">Story Count</label>
                       <input
                         type="number"
                         min={5}
@@ -316,14 +316,14 @@ export default function NewNewsPage() {
               showForm ? "lg:col-span-2" : "lg:col-span-3"
             }`}
           >
-            <h2 className="text-lg font-medium text-foreground">Preview & Edit</h2>
+            <h2 className="text-lg font-medium">Preview & Edit</h2>
             <textarea
               className="w-full border rounded px-3 py-2 bg-background font-mono text-sm min-h-[420px] lg:min-h-[520px] focus:outline-none focus:ring-2 focus:ring-ring"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-foreground">Regenerate Instructions (optional)</label>
+              <label className="block text-sm font-medium">Regenerate Instructions (optional)</label>
               <textarea
                 className="w-full border rounded px-3 py-2 bg-background min-h-[100px] focus:outline-none focus:ring-2 focus:ring-ring"
                 placeholder="Example: Add official statement, clarify numbers, shorten intro..."
