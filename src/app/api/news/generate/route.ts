@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     // Fresh generation flow with format-specific prompts
     const system = new SystemMessage(
-      "You are a professional Gujarati broadcast news anchor and editor. Write output strictly in Gujarati with a neutral, formal anchor-style tone. Use markdown. Avoid sensationalism. If facts are missing, clearly state assumptions. CRITICAL: Obey the requested structure EXACTLY. For every section that specifies a count (e.g., Top Band (5 words), VO Script, Express lines, Rundown stories), output EXACTLY that many items—no more, no less. For Top Bands, each must be exactly 5 words. Do NOT add extra bullets, do NOT omit any. Do NOT leave any numbered item blank; each item must contain a complete, meaningful sentence in Gujarati. Do NOT reorder any pre-listed, numbered, or topic-tagged lines provided in the template."
+      "You are a professional Gujarati broadcast news anchor and editor. Write output strictly in Gujarati with a neutral, formal anchor-style tone. Use markdown. Avoid sensationalism. If facts are missing, clearly state assumptions. CRITICAL: Obey the requested structure EXACTLY. For every section that specifies a count (e.g., Top Band (5 words), VO Script Write a single paragraph in Gujarati. Keep it detailed and comprehensive. Do not use numbers or bullet points., Express lines, Rundown stories), output EXACTLY that many items—no more, no less. For Top Bands, each must be exactly 5 words. Do NOT add extra bullets, do NOT omit any. Do NOT leave any numbered item blank; each item must contain a complete, meaningful sentence in Gujarati. Do NOT reorder any pre-listed, numbered, or topic-tagged lines provided in the template."
     );
 
     const fmt: NewsFormat | undefined = format as NewsFormat | undefined;
@@ -104,7 +104,7 @@ ${Array.from({ length: 5 }).map(() => "- ").join("\n")}`;
         case "PKG": {
           const voSections = [];
           for (let i = 0; i < voCount; i++) {
-            voSections.push(`## VO Script ${i + 1} (15-line paragraph)\n(Write a single 15-line paragraph in Gujarati)`);
+            voSections.push(`## VO Script ${i + 1} (15-line paragraph)\n(Write a single 15-line paragraph in Gujarati. Keep it detailed and comprehensive. Do not use numbers or bullet points.)`);
           }
           return `${header}
 
@@ -130,7 +130,7 @@ ${Array.from({ length: 5 }).map(() => "- ").join("\n")}`;
         case "AV_GFX":
           return `${header}\n\nઆઉટપુટ બંધારણ (Gujarati only, markdown only):\n# ${safeTitle}\n\n## Story\n(Write a 150-word story in Gujarati. Keep it concise and focused on the key points.)\n\n## Top Bands (${topBandCount})\n${Array.from({ length: topBandCount }).map(() => "- ").join("\n")}`;
         case "EXPRESS":
-          return `${header}\n\nઆઉટપુટ બંધારણ (Gujarati only, markdown only):\n# ${safeTitle}\n\n## Express Summary (2 lines)\n1)\n2)`;
+          return `${header}\n\nઆઉટપુટ બંધારણ (Gujarati only, markdown only):\n# ${safeTitle}\n\n## Express Summary\n(Write a 4-line summary in a single paragraph in Gujarati. Keep it concise and focused on the key points.)`;
         case "BULLETIN_26M": {
           const secs = Math.floor((26 * 60 - 4 * 90) / 30);
           // Distribute storyCount across topics in order, grouped by topic
@@ -153,7 +153,7 @@ ${Array.from({ length: 5 }).map(() => "- ").join("\n")}`;
         case "SPECIAL": {
           const voSections = [];
           for (let i = 0; i < voCount; i++) {
-            voSections.push(`## VO Script ${i + 1} (30-line paragraph)\n(Write a single 30-line paragraph in Gujarati)`);
+            voSections.push(`## VO Script ${i + 1} (30-line paragraph)\n(Write a single 30-line paragraph in Gujarati. Keep it detailed and comprehensive. Do not use numbers or bullet points.)`);
           }
           return `${header}
 
