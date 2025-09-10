@@ -130,7 +130,7 @@ ${Array.from({ length: 5 }).map(() => "- ").join("\n")}`;
         case "AV_GFX":
           return `${header}\n\nઆઉટપુટ બંધારણ (Gujarati only, markdown only):\n# ${safeTitle}\n\n## Story\n(Write a 150-word story in Gujarati. Keep it concise and focused on the key points.)\n\n## Top Bands (${topBandCount})\n${Array.from({ length: topBandCount }).map(() => "- ").join("\n")}`;
         case "EXPRESS":
-          return `${header}\n\nઆઉટપુટ બંધારણ (Gujarati only, markdown only):\n# ${safeTitle}\n\n## Express Summary\n(Write a 4-line summary in a single paragraph in Gujarati. Keep it concise and focused on the key points.)`;
+          return `Write a 60-word summary in Gujarati about: ${brief || safeTitle}. Focus on key facts only, no formatting, no sections, just plain text. Do not include any markdown, headers, or additional text.`;
         case "BULLETIN_26M": {
           const secs = Math.floor((26 * 60 - 4 * 90) / 30);
           // Distribute storyCount across topics in order, grouped by topic
@@ -208,16 +208,24 @@ Requirements:
     
     // Use withKeyRotation to handle API key rotation automatically
     const content = await withKeyRotation(async (model) => {
-      const aiRes = await model.invoke([system, user]);
-      let result = normalizeContent(aiRes as { content: unknown });
-      
-      // Safety: ensure no blank numbered items for AV anchor lines
-      if (fmt === "AV") {
-        const filler = "આજના મુખ્ય મુદ્દા પર એક સંક્ષિપ્ત, સ્પષ્ટ વાક્ય.";
-        result = result.replace(/^(\s*\d+\)\s*)$/gm, (_, p1: string) => `${p1}${filler}`);
+      if (fmt === "EXPRESS") {
+        // For EXPRESS format, use a simplified system prompt
+        const expressSystem = new SystemMessage("You are a professional Gujarati news writer. Write a 60-word summary in Gujarati based on the provided information. Include only the summary text, no formatting, no sections, just plain text.");
+        const expressUser = new HumanMessage(`Write a 60-word summary about: ${brief || safeTitle}`);
+        const aiRes = await model.invoke([expressSystem, expressUser]);
+        return normalizeContent(aiRes as { content: unknown }).trim();
+      } else {
+        // For other formats, use the original processing
+        const aiRes = await model.invoke([system, user]);
+        let result = normalizeContent(aiRes as { content: unknown });
+        
+        // Safety: ensure no blank numbered items for AV anchor lines
+        if (fmt === "AV") {
+          const filler = "આજના મુખ્ય મુદ્દા પર એક સંક્ષિપ્ત, સ્પષ્ટ વાક્ય.";
+          result = result.replace(/^(\s*\d+\)\s*)$/gm, (_, p1: string) => `${p1}${filler}`);
+        }
+        return result;
       }
-      
-      return result;
     });
 
     return NextResponse.json({ content });

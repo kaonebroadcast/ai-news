@@ -59,6 +59,7 @@ export default function NewNewsPage() {
         topBandCount: Number.isFinite(topBandCount) ? topBandCount : undefined,
         storyCount: Number.isFinite(storyCount) ? storyCount : undefined,
       };
+      console.log({ brief, baseContent: content, instructions: regenInstructions, format, options })
       const res = await fetch("/api/news/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
