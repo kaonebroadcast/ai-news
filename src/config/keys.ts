@@ -1,37 +1,10 @@
 // List of Gemini API keys to rotate through
-// export const GEMINI_API_KEYS = [
-//   'AIzaSyBrYE94vZ2HQ-BSqE5uUzOiJTpclGa9E3k',  // Your primary key
-//   // Add more keys here as needed
-//   // 'YOUR_SECOND_KEY',
-//   // 'YOUR_THIRD_KEY',
-// ];
-
-// Helper to dynamically get all GEMINI_API_KEYS from env as string[]
-const getGeminiApiKeys = (): string[] => {
-  const env = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env ?? {};
-  const raw = env.GEMINI_API_KEYS;
-
-  if (!raw) return [];
-
-  try {
-    const parsed = JSON.parse(raw);
-
-    if (!Array.isArray(parsed)) {
-      console.error("Invalid GEMINI_API_KEYS format. Must be a JSON array of strings.");
-      return [];
-    }
-
-    return parsed
-      .filter((key): key is string => typeof key === "string")
-      .map((key: string) => key.trim())
-      .filter((key: string) => key.length > 0);
-  } catch (err) {
-    console.error("Invalid GEMINI_API_KEYS JSON. Must be a JSON array of strings.", err);
-    return [];
-  }
-};
-
-export const GEMINI_API_KEYS = getGeminiApiKeys();
+export const GEMINI_API_KEYS = [
+  'AIzaSyBMJc3Se4MtivpDfxD60NmwyAS0Biwrypg',  // Your primary key
+  // Add more keys here as needed
+  // 'YOUR_SECOND_KEY',
+  // 'YOUR_THIRD_KEY',
+];
 
 
 // Track the current key index and rate limit status
@@ -46,9 +19,7 @@ let keys: KeyStatus[] = [];
 
 // Initialize keys array
 if (GEMINI_API_KEYS.length === 0) {
-  throw new Error(
-    'No Gemini API keys provided. Please set GEMINI_API_KEYS as a JSON array in your environment, e.g. GEMINI_API_KEYS=["key1","key2"].'
-  );
+  throw new Error('No Gemini API keys provided. Please set GEMINI_API_KEY or GEMINI_API_KEYS environment variable.');
 }
 
 // Initialize keys status
