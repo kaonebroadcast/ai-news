@@ -1,11 +1,6 @@
 // List of Gemini API keys to rotate through
 export const GEMINI_API_KEYS = [
-  'AIzaSyAWHtuE7rfRiL42Orz4xD0bgCsNOni7VS0',  // Your primary key
-  'AIzaSyCMwTo2LlRqf28tmu8CShRuTFVDo1ln9xM',
-  'AIzaSyCjeFfbXRq9CvmEoiOhTL7RReF92lADZlU',
-  'AIzaSyCm3D9ME7rMqvbsJ5yJPLqEY0QVZuYm_nc',
-  'AIzaSyDGf0_2QhxsBg-IXMao-zky-pcpDBtSdVM',
-  'AIzaSyBJaUK6-OeT7TxV_OLkFgnh1K9tqJO_iGY'
+  'AIzaSyDzsC3dFkuv8lWyBGG_luGrC5yK9aU9hDA'
 ];
 
 
