@@ -1,6 +1,6 @@
 // List of Gemini API keys to rotate through
 export const GEMINI_API_KEYS = [
-  'AIzaSyAluTSCFeFchIeZej4q4QdhEjtLN_fa3sg'
+  'AIzaSyC632UFbbnQKyTaeavvrfXXH09rKfQrNjM'
 ];
 
 
