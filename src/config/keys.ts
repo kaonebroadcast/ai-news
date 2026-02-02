@@ -1,7 +1,41 @@
 // List of Gemini API keys to rotate through
-export const GEMINI_API_KEYS = [
-  'AIzaSyC632UFbbnQKyTaeavvrfXXH09rKfQrNjM'
-];
+// Supports:
+// - GEMINI_API_KEY (single key)
+// - GEMINI_API_KEYS (comma-separated: "key1, key2, key3" or JSON array: '["key1","key2"]')
+function getApiKeys(): string[] {
+  // Try GEMINI_API_KEYS first (supports both comma-separated and JSON array format)
+  const keysEnv = process.env.GEMINI_API_KEYS;
+  if (keysEnv) {
+    const trimmed = keysEnv.trim();
+    
+    // Check if it's a JSON array format
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed) as string[];
+        if (Array.isArray(parsed)) {
+          return parsed.filter(key => typeof key === 'string' && key.length > 0);
+        }
+      } catch (error) {
+        console.warn('Failed to parse GEMINI_API_KEYS as JSON array, falling back to comma-separated format');
+      }
+    }
+    
+    // Fall back to comma-separated format (handles spaces after commas)
+    return trimmed.split(',').map(key => key.trim()).filter(key => key.length > 0);
+  }
+  
+  // Fall back to GEMINI_API_KEY (single key)
+  const keyEnv = process.env.GEMINI_API_KEY;
+  if (keyEnv) {
+    return [keyEnv.trim()];
+  }
+  
+  // If no environment variable is set, return empty array
+  // The error will be thrown in the initialization check below
+  return [];
+}
+
+export const GEMINI_API_KEYS = getApiKeys();
 
 
 // Track the current key index and rate limit status
