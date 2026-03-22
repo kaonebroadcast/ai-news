@@ -133,8 +133,14 @@ function VerifyOtpContent() {
         token: data.token || tempToken
       });
 
-      // Redirect to home page on successful verification
-      router.push('/');
+      // Redirect to the intended page or home page on successful verification
+      const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+      if (redirectUrl) {
+        sessionStorage.removeItem('redirectAfterLogin');
+        router.push(redirectUrl);
+      } else {
+        router.push('/');
+      }
     } catch (err) {
       console.error('OTP verification error:', err);
       setError(err instanceof Error ? err.message : 'Failed to verify OTP');

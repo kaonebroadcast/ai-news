@@ -134,8 +134,8 @@ export default function NewNewsPage() {
                     <option value="AV">AV (7 lines + 5 top band)</option>
                     <option value="PKG">PKG (Anchor+VO+Closing+TopBand)</option>
                     <option value="AV_GFX">AV GFX (Top band 5-10)</option>
-                    <option value="BULLETIN_26M">Bulletin 26m (30 stories)</option>
-                    <option value="SPECIAL">Special (Anchor+10 VO+Closing+GFX)</option>
+                    <option value="BULLETIN_26M" className="hidden">Bulletin 26m (30 stories)</option>
+                    <option value="SPECIAL" className="hidden">Special (Anchor+10 VO+Closing+GFX)</option>
                   </select>
                   <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-foreground/60">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">

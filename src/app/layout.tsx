@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 
 function Header() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
   const isAuthPage = pathname === '/login' || pathname === '/verify-otp';
@@ -29,7 +29,14 @@ function Header() {
     setIsClient(true);
   }, []);
 
-  if (!isClient || isAuthPage || !isAuthenticated) {
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (isLoading) {
+      e.preventDefault();
+      return;
+    }
+  };
+
+  if (!isClient || isAuthPage || !isAuthenticated || isLoading) {
     return null;
   }
   
@@ -55,6 +62,7 @@ function Header() {
             <Link 
               href="/news/new" 
               className="bg-white text-red-600 hover:bg-red-50 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              onClick={(e) => handleNavigation(e, '/news/new')}
             >
               New Report
             </Link>

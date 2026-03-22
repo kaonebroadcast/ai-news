@@ -91,7 +91,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     if (!user && !isPublicPath) {
       // Store the intended URL before redirecting to login
-      sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+      }
       router.push('/login');
     } else if (user && isPublicPath) {
       // Redirect to home if already logged in and trying to access auth pages
